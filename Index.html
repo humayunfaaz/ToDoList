@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+  <main class="main-content">
+  <nav class="navbar">
+    <h1 class="nav-title">To-Do List</h1>
+    <ul class="nav-links">
+        <li><a href="#account">Account</a></li>
+        <li><a href="#settings">Settings</a></li>
+        <li><a href="#calendar">Calendar</a></li>
+        <li><a href="#reminder">Reminder</a></li>
+        <li><a href="#theme">Theme</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+    </ul>
+  </nav>
+  <section class="workspace">
+  <button id="NewTaskBtn">New Task</button>
+
+<div class="container">
+    <div class="card">
+        <form id="taskForm" action="">
+            <input type="text" id="taskInput" placeholder="Add a new task...">
+            
+            <label for="priorityInput">Priority:</label>
+            <select id="priorityInput">
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High</option>
+            </select>
+
+             <label for="dueDateInput">Due Date:</label>
+            <input type="date" id="dueDateInput">
+            <button type="submit" id="addTaskButton">Add Task</button>
+        </form>
+    </div>
+
+</div>
+  </section>
+</main>
+</body>
+</html>
