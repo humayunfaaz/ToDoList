@@ -19,7 +19,7 @@ newTaskBtn.addEventListener("click", () => {
 });
 
 
-const tasks = [];
+let tasks = [];
 taskForm.addEventListener("submit", (event) => {
     // Prevent the page from refreshing[cite: 1]
     event.preventDefault();
@@ -44,22 +44,32 @@ taskForm.addEventListener("submit", (event) => {
     taskInput.value = "";
     dueDateInput.value = "";
     priorityInput.value = "Medium";
-   
-});
 
+     
+   container.style.display = "none";
+});
+function deleteTask(event) {
+     if (event.target.classList.contains("delete-btn")) {
+        const taskId = Number(event.target.dataset.id);
+       tasks = tasks.filter((task)=> task.id !==taskId);
+              renderTasks();
+     }
+
+}
+tasksContainer.addEventListener("click", deleteTask);
 function renderTasks() {
     tasksContainer.innerHTML = "";
     tasks.forEach(( task) => {
         const card = document.createElement("div");
         card.classList.add("task-card");
         card.innerHTML = `
-            <h3>${task.title}</h3>
-            <p>Priority: ${task.priority}</p>
-            <p>Due Date: ${task.dueDate}</p>
+            <h3 class="newTask-title">${task.title}</h3>
+            <p class="newtask-priority">Priority: ${task.priority}</p>
+            <p class="newtask-dueDate">Due Date: ${task.dueDate}</p>
             <button class="delete-btn" data-id="${task.id}">Delete</button>
         `;
         tasksContainer.appendChild(card);   
-
+        
     });
 }
 // renderTasks();
