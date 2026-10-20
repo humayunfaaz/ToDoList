@@ -184,18 +184,42 @@ li{
     font-size: 0.9rem;
     color: #555;
 }
-
-.delete-btn {
-    align-self: flex-end;
+.task-actions{
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
     margin-top: 8px;
-    padding: 8px 14px;
+}
+.task-actions button{
+    flex: 1;
+    min-width: 0;
+    padding: 8px 6px;
     border: none;
-    border-radius: 6px;
-    background-color: #b10615; /* Nice alert red for deletion */
+    border-radius: 7px;
     color: white;
     font-size: 0.85rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background-color 0.2s, transform 0.2s;
+}
+.task-actions button:hover{
+    transform: translateY(-1px);
+}
+.complete-btn{
+    background-color: #04a80b;
+}
+.complete-btn:hover {
+    background-color: #036517;
+}
+.edit-btn{
+    background-color: #6246ea;
+}
+.edit-btn:hover{
+    background-color: #4932bf;
+}
+
+.delete-btn {
+    background-color: #b10615;
 }
 
 .delete-btn:hover {
