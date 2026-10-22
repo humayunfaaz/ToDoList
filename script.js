@@ -74,7 +74,7 @@ taskForm.addEventListener("submit", (event) => {
 
 // deleing function 
 function deleteTask(event) {
-     if (event.target.classList.contains("delete-btn")) {
+     if (event.target.classList.contains("deletebtn")) {
         const taskId = Number(event.target.dataset.id);
        tasks = tasks.filter((task)=> task.id !==taskId);
               renderTasks();
@@ -84,13 +84,13 @@ function deleteTask(event) {
 tasksContainer.addEventListener("click", deleteTask);
 
 function completeTask(event) {
-    if (event.target.classList.contains("complete-btn")) {
+    if (event.target.classList.contains("completebtn")) {
         taskId = Number(event.target.dataset.id);
               const foundTask = tasks.find((task)=> task.id === taskId);
          if (foundTask) {
             foundTask.completed = !foundTask.completed;
         }
-        const newTasktitle = document.getElementsByClassName("newTask-title");
+        const newTasktitle = document.getElementsByClassName("newTasktitle");
         renderTasks();
     }
 }
@@ -111,15 +111,15 @@ function renderFilteredTasks(filteredTasks) {
     tasksContainer.innerHTML = "";
     filteredTasks.forEach((task) => {
         const card = document.createElement("div");
-        card.classList.add("task-card");
+        card.classList.add("taskcard");
         card.innerHTML = `
-            <h3 class="newTask-title">${task.completed ? `<del>${task.title}</del>` : task.title}</h3>
-            <p class="newtask-priority">Priority: ${task.priority}</p>
-            <p class="newtask-dueDate">Due Date: ${task.dueDate}</p>
-            <div class="task-actions">
-                <button class="complete-btn" data-id="${task.id}">${task.completed ? "Undo" : "Complete"}</button>
-                <button class="edit-btn" data-id="${task.id}">Edit</button>
-                <button class="delete-btn" data-id="${task.id}">Delete</button>
+            <h3 class="newTasktitle">${task.completed ? `<del>${task.title}</del>` : task.title}</h3>
+            <p class="newtaskpriority">Priority: ${task.priority}</p>
+            <p class="newtaskdueDate">Due Date: ${task.dueDate}</p>
+            <div class="taskactions">
+                <button class="completebtn" data-id="${task.id}">${task.completed ? "Undo" : "Complete"}</button>
+                <button class="editbtn" data-id="${task.id}">Edit</button>
+                <button class="deletebtn" data-id="${task.id}">Delete</button>
             </div>
         `;
         tasksContainer.appendChild(card);
@@ -132,7 +132,7 @@ function renderFilteredTasks(filteredTasks) {
 let editingId = null;
 const  change = document.getElementById("addTaskButton");
 function editTask(event) {
-    if (event.target.classList.contains("edit-btn")) { 
+    if (event.target.classList.contains("editbtn")) { 
        taskId = Number(event.target.dataset.id);
       const EditTask = tasks.find((task)=> task.id === taskId);
     
@@ -156,15 +156,15 @@ function renderTasks() {
     tasksContainer.innerHTML = "";
     tasks.forEach(( task) => {
         const card = document.createElement("div");
-        card.classList.add("task-card");
+        card.classList.add("taskcard");
         card.innerHTML = `
-            <h3 class="newTask-title">${task.completed ? `<del>${task.title}</del>` : task.title}</h3>
-            <p class="newtask-priority">Priority: ${task.priority}</p>
-            <p class="newtask-dueDate">Due Date: ${task.dueDate}</p>
-            <div class="task-actions">
-                <button class="complete-btn" data-id="${task.id}">${task.completed ? "Undo" : "Complete"}</button>
-                <button class="edit-btn" data-id="${task.id}">Edit</button>
-                <button class="delete-btn" data-id="${task.id}">Delete</button>
+            <h3 class="newTasktitle">${task.completed ? `<del>${task.title}</del>` : task.title}</h3>
+            <p class="newtaskpriority">Priority: ${task.priority}</p>
+            <p class="newtaskdueDate">Due Date: ${task.dueDate}</p>
+            <div class="taskactions">
+                <button class="completebtn" data-id="${task.id}">${task.completed ? "Undo" : "Complete"}</button>
+                <button class="editbtn" data-id="${task.id}">Edit</button>
+                <button class="deletebtn" data-id="${task.id}">Delete</button>
 
             </div>
         `;
