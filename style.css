@@ -12,6 +12,21 @@ body{
     display: flex;
     min-height: 100vh;
 }
+.searchBar{
+    width: 485px;
+
+    padding: 10px;
+    /* background-origin: padding-box; */
+    border: #44424a;
+    background-color: #cdc8c8;
+    border-radius: 20px;
+    color: #e8e7ed;
+    cursor: pointer ;
+
+}
+.searchBar:hover{
+    background-color: #565656;
+}
 .navbar{
     display: flex;
     align-items: stretch;

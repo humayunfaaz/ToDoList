@@ -96,6 +96,38 @@ function completeTask(event) {
 }
 tasksContainer.addEventListener("click", completeTask);
 
+// search bar function
+function searchTasks() {
+    const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+    const filteredTasks = tasks.filter((task) => task.title.toLowerCase().includes(searchTerm));
+    renderFilteredTasks(filteredTasks);
+}
+tasksContainer.addEventListener("input", searchTasks);
+
+document.getElementById("searchInput").addEventListener("input", searchTasks);
+
+function renderFilteredTasks(filteredTasks) {
+    const tasksContainer = document.getElementById("tasksContainer");
+    tasksContainer.innerHTML = "";
+    filteredTasks.forEach((task) => {
+        const card = document.createElement("div");
+        card.classList.add("task-card");
+        card.innerHTML = `
+            <h3 class="newTask-title">${task.completed ? `<del>${task.title}</del>` : task.title}</h3>
+            <p class="newtask-priority">Priority: ${task.priority}</p>
+            <p class="newtask-dueDate">Due Date: ${task.dueDate}</p>
+            <div class="task-actions">
+                <button class="complete-btn" data-id="${task.id}">${task.completed ? "Undo" : "Complete"}</button>
+                <button class="edit-btn" data-id="${task.id}">Edit</button>
+                <button class="delete-btn" data-id="${task.id}">Delete</button>
+            </div>
+        `;
+        tasksContainer.appendChild(card);
+    });
+}
+
+
+
 // edit button function
 let editingId = null;
 const  change = document.getElementById("addTaskButton");
