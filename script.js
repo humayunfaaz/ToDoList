@@ -100,7 +100,7 @@ tasksContainer.addEventListener("click", completeTask);
 
   let Currtentpriority = "All";
   let query = "";
-  let currentStatus = "active";
+  let currentStatus = "Active";
 const statusFilter = document.getElementById("statusFilter");
 const priorityFilter = document.getElementById("priorityFilter");
 
@@ -108,12 +108,13 @@ const priorityFilter = document.getElementById("priorityFilter");
    const searchInput = document.querySelector(".searchBar");
     query = searchInput.value.toLowerCase().trim();
      if (searchInput) {
-        if (query === "") {
-        alert("Please enter a search term.");
-        }
-        else{
+        
+        
+            searchInput.addEventListener("input", (event) => {
+        query = event.target.value.toLowerCase().trim();
         applyAllFilters();
-        }
+        // applyAllFilters();
+        });
     }
     priorityFilter.addEventListener("change", () => {
         Currtentpriority = priorityFilter.value;
@@ -124,12 +125,12 @@ const priorityFilter = document.getElementById("priorityFilter");
         applyAllFilters();
     });
 
-    applyAllFilters();{
+     function applyAllFilters(){
       const filteredTasks = tasks.filter((task) => {
         const matchesQuery = task.title.toLowerCase().includes(query);
         const matchesPriority = Currtentpriority === "All" || task.priority === Currtentpriority;
         // let matchesStatus = true;
-        let matchesStatus = true;
+        const matchesStatus = true;
         if (currentStatus === "Active") matchesStatus = !task.completed;
         if (currentStatus === "Completed") matchesStatus = task.completed;
         
