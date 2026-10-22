@@ -95,36 +95,55 @@ function completeTask(event) {
     }
 }
 tasksContainer.addEventListener("click", completeTask);
+// master function to handle all task filtering
 
-// search bar function
-function searchTasks() {
-    const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-    const filteredTasks = tasks.filter((task) => task.title.toLowerCase().includes(searchTerm));
-    renderFilteredTasks(filteredTasks);
-}
-tasksContainer.addEventListener("input", searchTasks);
 
-document.getElementById("searchInput").addEventListener("input", searchTasks);
+  let Currtentpriority = "All";
+  let query = "";
+  let currentStatus = "active";
+const statusFilter = document.getElementById("statusFilter");
+const priorityFilter = document.getElementById("priorityFilter");
 
-function renderFilteredTasks(filteredTasks) {
-    const tasksContainer = document.getElementById("tasksContainer");
-    tasksContainer.innerHTML = "";
-    filteredTasks.forEach((task) => {
-        const card = document.createElement("div");
-        card.classList.add("taskcard");
-        card.innerHTML = `
-            <h3 class="newTasktitle">${task.completed ? `<del>${task.title}</del>` : task.title}</h3>
-            <p class="newtaskpriority">Priority: ${task.priority}</p>
-            <p class="newtaskdueDate">Due Date: ${task.dueDate}</p>
-            <div class="taskactions">
-                <button class="completebtn" data-id="${task.id}">${task.completed ? "Undo" : "Complete"}</button>
-                <button class="editbtn" data-id="${task.id}">Edit</button>
-                <button class="deletebtn" data-id="${task.id}">Delete</button>
-            </div>
-        `;
-        tasksContainer.appendChild(card);
+ // search bar function
+   const searchInput = document.querySelector(".searchBar");
+    query = searchInput.value.toLowerCase().trim();
+     if (searchInput) {
+        if (query === "") {
+        alert("Please enter a search term.");
+        }
+        else{
+        applyAllFilters();
+        }
+    }
+    priorityFilter.addEventListener("change", () => {
+        Currtentpriority = priorityFilter.value;
+        applyAllFilters();
     });
-}
+    statusFilter.addEventListener("change", () => {
+        currentStatus = statusFilter.value;
+        applyAllFilters();
+    });
+
+    applyAllFilters();{
+      const filteredTasks = tasks.filter((task) => {
+        const matchesQuery = task.title.toLowerCase().includes(query);
+        const matchesPriority = Currtentpriority === "All" || task.priority === Currtentpriority;
+        // let matchesStatus = true;
+        let matchesStatus = true;
+        if (currentStatus === "Active") matchesStatus = !task.completed;
+        if (currentStatus === "Completed") matchesStatus = task.completed;
+        
+        return matchesQuery && matchesPriority && matchesStatus;
+      });
+
+    renderTasks(filteredTasks);
+
+
+    }
+
+  
+
+
 
 
 

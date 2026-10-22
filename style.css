@@ -16,7 +16,7 @@ body{
     width: 485px;
 
     padding: 10px;
-    /* background-origin: padding-box; */
+    
     border: #44424a;
     background-color: #cdc8c8;
     border-radius: 20px;
@@ -257,3 +257,60 @@ li{
     padding : 4px ;
 }
 /* ......................... */
+
+/* Search and filter toolbar */
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 8px 0 24px;
+}
+.filter-container .searchBar {
+    flex: 1 1 280px;
+    width: auto;
+    min-width: 180px;
+    padding: 11px 14px;
+    border: 1px solid #dedbea;
+    border-radius: 10px;
+    background: #fff;
+    color: #202124;
+    font: inherit;
+    cursor: text;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.filter-container .searchBar::placeholder {
+    color: #85818f;
+}
+.filter-dropdown {
+    min-width: 150px;
+    padding: 11px 36px 11px 14px;
+    border: 1px solid #dedbea;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #35313f;
+    font: inherit;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.filter-container .searchBar:focus,
+.filter-dropdown:focus {
+    outline: none;
+    border-color: #6246ea;
+    box-shadow: 0 0 0 3px rgba(98, 70, 234, 0.14);
+}
+.filter-dropdown:hover {
+    border-color: #b9b1dc;
+}
+@media (max-width: 760px) {
+    .filter-container {
+        flex-wrap: wrap;
+    }
+    .filter-container .searchBar {
+        flex-basis: 100%;
+    }
+    .filter-dropdown {
+        flex: 1 1 140px;
+        min-width: 0;
+    }
+}

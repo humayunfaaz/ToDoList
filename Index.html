@@ -29,7 +29,25 @@
   </nav>
   <section class="workspace">
   <button id="NewTaskBtn">New Task</button>
-   <input  class = "searchBar" type="text" id="searchInput" placeholder="Search tasks...">
+   <!-- <input  class = "searchBar" type="text" id="searchInput" placeholder="Search tasks..."> -->
+   <div class="filter-container">
+     <!-- SearchBar -->
+    <input  class = "searchBar" type="text" id="searchInput" placeholder="Search tasks...">
+    <!-- Status filter -->
+    <select id="statusFilter" class="filter-dropdown">
+        <option value="All">All Status</option>
+        <option value="Active">Active</option>
+        <option value="Completed">Completed</option>
+    </select>
+
+    <!-- Priority filter -->
+    <select id="priorityFilter" class="filter-dropdown">
+        <option value="All">All Priority</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+    </select>
+</div>
 <div class="container">
     <div class="card">
         <form id="taskForm" action="">
