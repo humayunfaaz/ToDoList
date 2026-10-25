@@ -67,7 +67,7 @@ taskForm.addEventListener("submit", (event) => {
 
         tasks.push(newTask);
     }
-
+      saveTasks();
     // Reapply all active filters
     applyAllFilters();
 
@@ -92,7 +92,7 @@ function deleteTask(event) {
             change.innerHTML = "Add Task";
             container.style.display = "none";
         }
-
+        saveTasks();
         applyAllFilters();
     }
 }
@@ -110,8 +110,9 @@ function completeTask(event) {
 
         if (foundTask) {
             foundTask.completed = !foundTask.completed;
+            saveTasks();
         }
-
+           
         // Reapply status and other filters
         applyAllFilters();
     }
@@ -203,7 +204,28 @@ function editTask(event) {
 }
 
 tasksContainer.addEventListener("click", editTask);
+// Saveing tasks in localStorage
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
+// Load tasks from localStorage
+
+function loadTasks() {
+    const savedTasks = localStorage.getItem("tasks");
+
+    if (savedTasks !== null) {
+        try {
+            const parsedTasks = JSON.parse(savedTasks);
+
+            if (Array.isArray(parsedTasks)) {
+                tasks = parsedTasks;
+            }
+        } catch (error) {
+            console.error("Error loading saved tasks:", error);
+        }
+    }
+}
 // Render tasks
 function renderTasks(tasksToRender = tasks) {
     tasksContainer.innerHTML = "";
@@ -273,6 +295,7 @@ function renderTasks(tasksToRender = tasks) {
 }
 
 // Initial render
+// applyAllFilters();
+loadTasks();
 applyAllFilters();
-
 // Popup Function
